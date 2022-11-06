@@ -29,11 +29,17 @@ for( unsigned i = 0; i < startPoints . size (); i++ ) {
  outgoing [end ]; // Just to indicate this node exists
 }
 }
-
+//requires:
+//nothing
+//effects:
+//Returns the number of outgoing edges from nodeID
  int Graph :: numOutgoing ( const int nodeID ) const {
  return adjacent ( nodeID ). size ();
 }
-
+//requires:
+//nothing
+//effects:
+//Returns a reference to the list of nodes to which nodeID has outgoing edges
  const vector <int > & Graph :: adjacent ( const int nodeID ) const {
  map <int , vector <int > >:: const_iterator i = outgoing . find ( nodeID );
  if(i == outgoing . end ()) {

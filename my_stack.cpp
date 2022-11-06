@@ -45,6 +45,48 @@ void push(const T &val) {
       array[this->Top]=val;
    }
 }
+// requires:
+// nothing
+// effects:
+// returns true if the stack is empty and false otherwise
+bool isEmpty()
+{
+    if (this-> Top == -1)
+    {
+        cout<< "the stack is empty\n";
+        return true;
+    }
+    else 
+    {
+        cout<< "the stack is not empty\n";
+        return false;
+    }
+}
+//requires:
+//at least 1 element in the stack
+//returns:
+//the elements at the top
+T& top()
+{
+    return array[Top];
+}
+//requires:
+//nothing
+//effects:
+//pops the element at the top of the stack
+void pop() {
+   if(this->Top<=-1)
+   {
+   cout<<"Stack Underflow"<<endl;
+
+   }
+   else {
+      cout<<"The popped element is "<< array[this->Top] <<endl;
+      this->Top--;
+      num_of_elements--;
+    
+   }
+}
 };
 int main () 
 {

@@ -87,6 +87,10 @@ void pop() {
     
    }
 }
+//requires:
+//2 non empty stacks
+//effects:
+//anew stack containing a’s items followed by b’s items
 
 mystack operator + (mystack const &obj) 
 {
@@ -115,5 +119,55 @@ return addedstacks;
 };
 int main () 
 {
+    mystack <int> stack;
+stack.push(3);
+stack.pop();
+stack.push(1);
+stack.push(2);
+stack.isEmpty();
+int  tt=stack.top();
+cout<< tt<<endl;
+
+mystack <char> stack2;
+stack2.push('e');
+
+mystack <char> chartest;
+chartest.push('d');
+chartest.push('c');
+chartest.push('b');
+chartest.push('a');
+mystack <char>charaddition ;
+
+ charaddition =  stack2+chartest  ;
+charaddition.pop();
+charaddition.pop();
+charaddition.pop();
+charaddition.pop();
+charaddition.pop();
+charaddition.pop();
+
+
+
+
+
+mystack <int> test1;
+mystack <int> test2;
+test1.push(1);
+test1.push(2);
+test1.push(3);
+test2.push(4);
+test2.push(5);
+test2.push(6);
+mystack <int> test3;
+test3=test1+test2;
+test3.pop();
+test3.pop();
+test3.pop();
+test3.pop();
+test3.pop();
+test3.pop();
+test3.pop();
+
+
     return 0;
 }

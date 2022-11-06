@@ -32,6 +32,7 @@ class BinaryTree
     void printInOrder(struct treeNode* treeNode);
     void printPostOrder(struct treeNode* treeNode);
     bool DeleteNode(struct treeNode* treeNode, T val);
+    void deleteTree(struct treeNode* treeNode);
     
 
 };
@@ -162,7 +163,7 @@ bool BinaryTree<T>::DeleteNode(struct treeNode* treeNode, T val){
 		return false;
 	}else{
 		if(val == treeNode->data){
-            std::cout<<"Cannot Delete Node";
+            std::cout<<"Cannot Delete Node"<<std::endl;
 			return true;
 		}
 
@@ -191,8 +192,47 @@ int BinaryTree<T>::SubtreeSize(struct treeNode* treeNode)
     return 1 + SubtreeSize(treeNode->left) + SubtreeSize(treeNode->right);
 }
 
-
+template <class T>
+void BinaryTree<T>::deleteTree(struct treeNode* treeNode){
+	if(treeNode != NULL){
+		deleteTree(treeNode->left);
+		deleteTree(treeNode->right);
+		delete treeNode;
+	}
+}
 
 int main(){
+
+    BinaryTree<int> tree;
+
+	tree.add(5);
+	tree.add(4);
+	tree.add(7);
+	tree.add(10);
+	tree.add(1);
+	tree.add(2);
+
+	tree.printPostOrder();
+	tree.printInOrder();
+	tree.printPreOrder();
+
+	std::cout << "Tree size: " << tree.size() << std::endl;
+
+	BinaryTree<char> tee;
+
+	tee.add('z');
+	tee.add('0');
+	tee.add('9');
+	tee.add('a');
+	tee.add('A');
+	tee.add('Z');
+
+	std::cout << "Contains 9? : "<< ((tee.DeleteNode('9'))? "true" : "false" ) << std::endl;
+
+	tee.printPostOrder();
+	tee.printInOrder();
+	tee.printPreOrder();
+
+	std::cout << "Tree size: " << tee.size() << std::endl;
     return 0;
 }

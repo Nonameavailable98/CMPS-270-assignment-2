@@ -20,6 +20,7 @@ class BinaryTree
     void printInOrder();
     void printPostOrder();
     bool DeleteNode(T val);
+    int SubtreeSize(struct treeNode * treeNode);
     
 
     private:
@@ -29,6 +30,7 @@ class BinaryTree
     void printInOrder(struct treeNode* treeNode);
     void printPostOrder(struct treeNode* treeNode);
     bool DeleteNode(struct treeNode* treeNode, T val);
+    
 
 };
 
@@ -115,10 +117,10 @@ void BinaryTree<T>::printPostOrder(struct treeNode* treeNode){
 		std::cout << treeNode->data << ", ";
 	}
 }
-//requires:
-//nothing
-//effects:
-//return the node that holds the given value
+// requires:
+// node with given value to exist 
+// effect:
+// deletes the node holding given value
 template <class T>
 bool BinaryTree<T>::DeleteNode(T val){
 	return DeleteNode(this->root, val);
@@ -145,8 +147,17 @@ bool BinaryTree<T>::DeleteNode(struct treeNode* treeNode, T val){
 			return DeleteNode(treeNode->left, val);
 		}
 	}
-
 }
+template <class T>
+int BinaryTree<T>::SubtreeSize(struct treeNode* treeNode)
+{
+       if(treeNode == nullptr)
+    return 0;
+    else 
+    return 1 + SubtreeSize(treeNode->left) + SubtreeSize(treeNode->right);
+}
+
+
 
 int main(){
     return 0;

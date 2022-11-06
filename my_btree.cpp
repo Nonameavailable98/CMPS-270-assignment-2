@@ -21,11 +21,13 @@ class BinaryTree
     void printPostOrder();
     bool DeleteNode(T val);
     int SubtreeSize(struct treeNode * treeNode);
-    
+    //I couldn't implement the tree as a complete tree so i implemented it as a binary search tree
+    void add(T val);
 
     private:
 	struct treeNode* root;
 	int treeSize;
+    void add(struct treeNode** treeNode, T val);
     void printPreOrder(struct treeNode* treeNode);
     void printInOrder(struct treeNode* treeNode);
     void printPostOrder(struct treeNode* treeNode);
@@ -59,6 +61,34 @@ BinaryTree<T>::~BinaryTree(){
 // nothing
 // effects:
 // returns tree size
+// requires:
+// nothing
+// effects:
+// adds node with given key to the tree
+template <class T>
+void BinaryTree<T>::add(T val){
+	add(&(this->root), val);
+}
+//Helper Function
+template <class T>
+void BinaryTree<T>::add(struct treeNode** treeNode, T val){
+
+	if(*treeNode == NULL)	{
+		struct treeNode* tmp = new struct treeNode;
+		tmp->data = val;
+		tmp->left=NULL;
+		tmp->right = NULL;
+		*treeNode = tmp;
+
+		this->treeSize++;
+	}else{
+		if(val > (*treeNode)->data){
+			add(&(*treeNode)->right, val);
+		}else{
+			add(&(*treeNode)->left, val);
+		}
+	}
+}
 template <class T>
 int BinaryTree<T>::size(){
 	return this->treeSize;
@@ -148,6 +178,10 @@ bool BinaryTree<T>::DeleteNode(struct treeNode* treeNode, T val){
 		}
 	}
 }
+// requires:
+// nothing
+// effects:
+// returns size of subtree starting from given node
 template <class T>
 int BinaryTree<T>::SubtreeSize(struct treeNode* treeNode)
 {

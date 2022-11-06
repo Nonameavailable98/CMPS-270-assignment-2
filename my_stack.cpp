@@ -87,6 +87,31 @@ void pop() {
     
    }
 }
+
+mystack operator + (mystack const &obj) 
+{
+mystack addedstacks;
+addedstacks.n= n+obj.n;
+
+  T *dbl = new T[addedstacks.n];
+    delete[] addedstacks.array;
+    addedstacks.array = dbl;
+    
+
+addedstacks.Top= num_of_elements+ obj.num_of_elements-1;
+addedstacks.num_of_elements= num_of_elements+obj.num_of_elements;
+
+
+for (int i=0; i<num_of_elements;i++)
+{
+    addedstacks.array[i]=array[i];
+}
+for(int i=0;i<obj.num_of_elements;i++)
+{
+    addedstacks.array[num_of_elements+i]=obj.array[i];
+}
+return addedstacks;
+}
 };
 int main () 
 {
